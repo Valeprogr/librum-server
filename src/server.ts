@@ -1,18 +1,45 @@
-import express,{Express,Request,Response} from "express";
-import dotenv from "dotenv";
-dotenv.config(); 
+import { config } from "./api/config/config";
+import express from "express";
+import http from "http";
+import mongoose from "mongoose";
 
+const router = express();
 
-const PORT= process.env.PORT;
-const app: Express= express();
+//Connection with Mongo
 
-app.get("/",(req:Request, res: Response)=>{
-    res.send('Express + Typescript Server');
+mongoose.connect(config.mongo.url, {retryWrites: true, w: "majority"})
+.then(()=>{
+    console.log('Connect to mongo');
+    StartServer();
 })
-async function startApp(){
-    app.listen(PORT, ()=>{
-        console.log(`[server]: Server started on port ${PORT}`)
-    })
-}
+.catch((error)=>{
+    console.log(error)
+})
 
-startApp()
+//Start Server
+const StartServer = () =>{
+    router.use(express.urlencoded({extended: true}));
+    router.use(express.json());
+    router.use((req,res,next)=>{
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Headers', 'ORIGIN, X-Requested-Width, Content-Type, Accept, Authorization');
+        if (req.method === 'OPTIONS') {
+            res.header('Access-Control-Allow-Methods', 'PUT,POST, PATCH, DELETE, GET');
+            return res.status(200).json({});
+        }
+        next();
+    });
+
+    //HealthCheck
+router.get('/ping', (req,res,next)=>{
+    res.status(200).json({message: 'pong'});
+})
+
+//Error Handling
+router.use((req,res,next)=>{
+    const error = new Error('not found');
+    return res.status(404).json({message: error.message})
+});
+
+http.createServer(router).listen(config.server.port, ()=> console.log(`Server is running on port ${config.server.port}.`))
+}
