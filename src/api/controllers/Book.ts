@@ -30,6 +30,22 @@ const getAllBooks = (req:Request, res: Response, next:NextFunction) =>{
     return Book.find()
 }
 
+const editBook = (req: Request, res: Response, next: NextFunction) => {
+const bookId = req.params.bookId;
+
+return Book.findById(bookId).then((book)=>{
+    if(book){
+        book.set(req.body);
+        return book
+            .save()
+            .then((book)=> res.status(201).json({book}))
+            .catch((error)=> res.status(500).json({error}));
+    }else{
+        return res.status(404).json({message: 'Not found'});
+    }
+});
+};
+
 const deleteBook = (req:Request, res: Response, next:NextFunction) =>{
     const bookId= req.params.bookId;
     return Book.findById(bookId)
@@ -42,5 +58,6 @@ const deleteBook = (req:Request, res: Response, next:NextFunction) =>{
 
 export default {createBook, 
                 getBook, 
-                getAllBooks, 
+                getAllBooks,
+                editBook, 
                 deleteBook};
