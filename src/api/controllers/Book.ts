@@ -3,20 +3,21 @@ import mongoose from "mongoose";
 import Book from '../models/Book';
 
 const createBook = (req: Request, res: Response, next: NextFunction)=>{
-    const {title, author, description, genre}= req.body;
+    const {title, author, description, genre,stock}= req.body;
     const book= new Book({
         _id: new mongoose.Types.ObjectId(),
         title,
         author,
         description,
-        genre
+        genre,
+        stock
     });
 
     return book
         .save()
         .then((book)=> res.status(201).json({book}))
         .catch((error)=> res.status(500).json({error}))
-}
+};
 
 const getBook = (req:Request, res: Response, next: NextFunction) => {
     const bookId = req.params.bookId;
@@ -28,6 +29,8 @@ const getBook = (req:Request, res: Response, next: NextFunction) => {
 
 const getAllBooks = (req:Request, res: Response, next:NextFunction) =>{
     return Book.find()
+    .then((books) => res.status(200).json({ books }))
+    .catch((error) => res.status(500).json({ error }));
 }
 
 const updateBook = (req: Request, res: Response, next: NextFunction) => {
@@ -48,7 +51,7 @@ return Book.findById(bookId).then((book)=>{
 
 const deleteBook = (req:Request, res: Response, next:NextFunction) =>{
     const bookId= req.params.bookId;
-    return Book.findById(bookId)
+    return Book.findByIdAndDelete(bookId)
     .then((book)=> (book ? res.status(201).json({
         message: 'deleted'
     }) : res.status(404).json({

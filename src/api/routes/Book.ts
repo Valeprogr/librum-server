@@ -8,3 +8,6 @@ router.post('/create',ValidateSchema(Schemas.book.create),controller.createBook)
 router.get('/get/:bookId', controller.getBook);
 router.get('/get/', controller.getAllBooks);
 router.patch('/update/:bookId', ValidateSchema(Schemas.book.update),controller.updateBook);
+router.delete('/delete/:bookId',controller.deleteBook);
+
+export = router;

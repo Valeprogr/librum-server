@@ -2,7 +2,7 @@ import { config } from "./api/config/config";
 import express from "express";
 import http from "http";
 import mongoose from "mongoose";
-
+import bookRoutes from "./api/routes/Book";
 const router = express();
 
 //Connection with Mongo
@@ -29,6 +29,8 @@ const StartServer = () =>{
         }
         next();
     });
+    //Routes
+    router.use('/books',bookRoutes);
 
     //HealthCheck
 router.get('/ping', (req,res,next)=>{

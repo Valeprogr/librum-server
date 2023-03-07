@@ -6,6 +6,8 @@ export const ValidateSchema = (schema: ObjectSchema) => {
     return async (req: Request, res: Response, next: NextFunction)=>{
         try{
             await schema.validateAsync(req.body);
+
+            next();
         }catch(error){
             return res.status(422).json({error})
         }
@@ -15,16 +17,18 @@ export const ValidateSchema = (schema: ObjectSchema) => {
 export const Schemas = {
     book:{
         create: Joi.object<IBook>({
-            title: Joi.string(),
-            author: Joi.string(),
-            description: Joi.string(),
-            genre: Joi.string()
+            title: Joi.string().required(),
+            author: Joi.string().required(),
+            description: Joi.string().required(),
+            genre: Joi.string().required(),
+            stock: Joi.number()
         }),
         update: Joi.object<IBook>({
-            title: Joi.string(),
-            author: Joi.string(),
-            description: Joi.string(),
-            genre: Joi.string()
+            title: Joi.string().required(),
+            author: Joi.string().required(),
+            description: Joi.string().required(),
+            genre: Joi.string().required(),
+            stock: Joi.number()
         })
     }
 }
