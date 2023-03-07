@@ -30,7 +30,7 @@ const getAllBooks = (req:Request, res: Response, next:NextFunction) =>{
     return Book.find()
 }
 
-const editBook = (req: Request, res: Response, next: NextFunction) => {
+const updateBook = (req: Request, res: Response, next: NextFunction) => {
 const bookId = req.params.bookId;
 
 return Book.findById(bookId).then((book)=>{
@@ -59,5 +59,5 @@ const deleteBook = (req:Request, res: Response, next:NextFunction) =>{
 export default {createBook, 
                 getBook, 
                 getAllBooks,
-                editBook, 
+                updateBook, 
                 deleteBook};

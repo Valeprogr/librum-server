@@ -12,9 +12,15 @@ export const ValidateSchema = (schema: ObjectSchema) => {
     };
 };
 
-export const Schema = {
+export const Schemas = {
     book:{
         create: Joi.object<IBook>({
+            title: Joi.string(),
+            author: Joi.string(),
+            description: Joi.string(),
+            genre: Joi.string()
+        }),
+        update: Joi.object<IBook>({
             title: Joi.string(),
             author: Joi.string(),
             description: Joi.string(),
