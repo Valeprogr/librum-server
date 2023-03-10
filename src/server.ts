@@ -3,6 +3,7 @@ import express from "express";
 import http from "http";
 import mongoose from "mongoose";
 import bookRoutes from "./api/routes/Book";
+import userRoutes from "./api/routes/User";
 const router = express();
 
 //Connection with Mongo
@@ -30,7 +31,8 @@ const StartServer = () =>{
         next();
     });
     //Routes
-    router.use('/books',bookRoutes);
+    router.use('/books', bookRoutes);
+    router.use('/user', userRoutes);
 
     //HealthCheck
 router.get('/ping', (req,res,next)=>{
