@@ -1,16 +1,14 @@
 import mongoose,{Schema} from "mongoose";
 export interface IUser{
-    name: string;
-    lastname: string;
-    password: string;
+    email: string;
+    books: string[];
 }
 
 export interface IUserModel extends IUser, Document{}
 
 const UserSchema = new Schema({
-    name: {type: String, required: true},
-    lastname: {type: String, required: true},
-    password: {type: String, required: true}
+    email: { type: String, require: true },
+    books: [{type: mongoose.Schema.Types.ObjectId, ref:'Book'}]
 });
 
 export default mongoose.model<IUserModel>('User', UserSchema)
