@@ -1,7 +1,7 @@
 import Joi,{ObjectSchema} from "joi";
 import { NextFunction,Response,Request } from "express";
 import { IBook } from "../models/Book";
-
+import { IUser } from "../models/User";
 export const ValidateSchema = (schema: ObjectSchema) => {
     return async (req: Request, res: Response, next: NextFunction)=>{
         try{
@@ -29,6 +29,15 @@ export const Schemas = {
             description: Joi.string().required(),
             genre: Joi.string().required(),
             stock: Joi.number()
+        })
+    },
+    user: {
+        create: Joi.object<IUser>({
+            email: Joi.string()
+            .required(),
+            books: [Joi.string()
+                .regex(/^[0-9a-fA-F]{24}$/)
+                .required()]
         })
     }
 }
