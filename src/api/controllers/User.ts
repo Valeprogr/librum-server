@@ -1,16 +1,21 @@
 import { NextFunction,Request,Response } from "express";
 import mongoose from "mongoose";
+import { json } from "stream/consumers";
 import User from "../models/User";
 
-const createUser = (req: Request, res: Response, next: NextFunction) => {
-    const { email, books } = req.body;
-    if (email === User.findOne({email})) {
+const createUser = async (req: Request, res: Response, next: NextFunction) => {
+    if (!req.body) {
+        return res.status(500).json({ message: "no req body" });
+    }
+    console.log(req.body.email)
+    const user = await User.findOne({email: req.body.email})
+    if (user) {
        return res.status(403).json({message: 'This account already exist!'})
     } else {
+        const email = req.body.email;
         const user = new User({
             _id: new mongoose.Types.ObjectId(),
-            email,
-            books
+            email
         })
         return user
             .save()
