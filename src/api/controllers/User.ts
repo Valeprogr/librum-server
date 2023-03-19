@@ -38,5 +38,32 @@ const getAllUsers = (req: Request, res: Response, next: NextFunction) => {
         .then((users) => res.status(200).json({ users }))
         .catch((error) => res.status(500).json({ error }));
 }
+//Cart Book Functions 
+const findBooks = (req: Request, res: Response, next: NextFunction) => {
+    const userEmail = req.body.email;
+    console.log(userEmail)
+    return User.find({ email: userEmail })
+    .then((users) => res.status(200).json({ users }))
+    .catch((error) => res.status(500).json({ error }));
+}
 
-export default {createUser, findUser, getAllUsers}
+const addBook = (req: Request, res: Response, next: NextFunction) => {
+    if (!req.body) {
+        return res.status(500).json({ message: "no req body" });
+    } 
+    const email = req.body.email;
+    const books = req.body.books;
+    
+        const user = new User({
+            _id: new mongoose.Types.ObjectId(),
+            email,
+            books
+        })
+    return user
+            .save()
+            .then((user) => res.status(201).json({ user }))
+            .catch((error)=>res.status(500).json({error}))
+    
+
+}
+export default {createUser, findUser, getAllUsers, findBooks,addBook}

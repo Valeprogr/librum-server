@@ -8,7 +8,7 @@ export interface IUserModel extends IUser, Document{}
 
 const UserSchema = new Schema({
     email: { type: String, require: true },
-    books: {type: mongoose.Schema.Types.ObjectId, ref:'Book', default: []}
+    books: {type: mongoose.Schema.Types.ObjectId, ref:'Book'}
 });
 
 export default mongoose.model<IUserModel>('User', UserSchema)
