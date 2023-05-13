@@ -4,10 +4,10 @@ import { Schemas, ValidateSchema} from "../middleware/ValidateSchema";
 
 const router = express.Router();
 
-router.post('/create',ValidateSchema(Schemas.book.create),controller.createBook);
-router.get('/get/:bookId', controller.getBook);
-router.get('/get/', controller.getAllBooks);
-router.patch('/update/:bookId', ValidateSchema(Schemas.book.update),controller.updateBook);
-router.delete('/delete/:bookId',controller.deleteBook);
+router.post('/addBook',ValidateSchema(Schemas.book.create),controller.createBook);
+router.get('/book/:bookId', controller.getBook);
+router.get('/listOfBooks', controller.getAllBooks);
+router.patch('/editBook/:bookId', ValidateSchema(Schemas.book.update),controller.updateBook);
+router.delete('/deleteBook/:bookId',controller.deleteBook);
 
 export = router;

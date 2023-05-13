@@ -1,6 +1,5 @@
 import { NextFunction,Request,Response } from "express";
 import mongoose from "mongoose";
-import { json } from "stream/consumers";
 import User from "../models/User";
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
@@ -26,9 +25,9 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
 }
 
 const findUser = (req: Request, res: Response, next: NextFunction) => {
-    const userId = req.params.userId;
+    const userEmail = req.body.email;
 
-    return User.findById(userId)
+    return User.findOne({email: userEmail})
         .then((user) => (user ? res.status(200).json({ user }) : res.status(404).json({ message: 'Not found' })))
         .catch((error) => res.status(500).json({ error }));
 }
