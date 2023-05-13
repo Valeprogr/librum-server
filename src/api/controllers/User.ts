@@ -65,4 +65,20 @@ const addBook = (req: Request, res: Response, next: NextFunction) => {
     
 
 }
-export default {createUser, findUser, getAllUsers, findBooks,addBook}
+
+const deleteBook = (req: Request, res: Response, next: NextFunction) => {
+    if (!req.body) {
+        return res.status(500).json({ message: "no req body" });
+    } 
+    const book = req.body.books;
+    console.log(book)
+
+    return User.findOneAndDelete({books: book })
+    .then((book)=> (book ? res.status(201).json({
+        message: 'deleted'
+    }) : res.status(404).json({
+        message: 'Not found'})))
+    .catch((error)=> res.status(500).json({error}))
+
+}
+export default {createUser, findUser, getAllUsers, findBooks,addBook, deleteBook}

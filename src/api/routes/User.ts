@@ -13,5 +13,6 @@ router.get('/all', controllers.getAllUsers);
 //This are cart Function connected with User
 router.get('/cartBooks', controllers.findBooks);
 router.post('/cartAddBook', controllers.addBook);
+router.delete('/cartDeleteBook', controllers.deleteBook);
 
 export = router;
