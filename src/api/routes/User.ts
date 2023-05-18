@@ -6,12 +6,13 @@ import { Schemas, ValidateSchema } from "../middleware/ValidateSchema";
 import { route } from "./Book";
 
 const router = express.Router();
-router.post('/create', controllers.createUser);
-router.get('/get/:userId', controllers.findUser);
+router.post('/createUser', controllers.createUser);
+router.get('/findUser', controllers.findUser);
 //This function is for check in the backend 
 router.get('/all', controllers.getAllUsers);
 //This are cart Function connected with User
-router.get('/cart', controllers.findBooks);
-router.post('/cart', controllers.addBook);
+router.get('/cartBooks', controllers.findBooks);
+router.post('/cartAddBook', controllers.addBook);
+router.delete('/cartDeleteBook', controllers.deleteBook);
 
 export = router;
