@@ -23,7 +23,7 @@ export const Schemas = {
             description: Joi.string().required(),
             genre: Joi.string().required(),
             stock: Joi.number(),
-            imageUrl: Joi.string().required()
+            imageUrl: Joi.string()
         }),
         update: Joi.object<IBook>({
             title: Joi.string(),
