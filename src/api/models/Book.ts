@@ -17,7 +17,7 @@ const BookSchema = new Schema({
     description: {type: String, required:true},
     genre: {type: String, required: true},
     stock: { type: Number, default: 1 },
-    imageUrl: {type: String, required: true}
+    imageUrl: {type: String, default: ""}
 },{
     timestamps: true,
     versionKey: false
