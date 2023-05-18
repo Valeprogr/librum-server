@@ -12,12 +12,12 @@ export interface IBook {
 export interface IBookModel extends IBook, Document{}
 
 const BookSchema = new Schema({
-    title: {type: String},
-    author: {type: String},
-    description: {type: String},
-    genre: {type: String},
+    title: {type: String, required: true},
+    author: {type: String, required: true},
+    description: {type: String, required:true},
+    genre: {type: String, required: true},
     stock: { type: Number, default: 1 },
-    imageUrl: {type: String, default: ""}
+    imageUrl: {type: String, default: ''}
 },{
     timestamps: true,
     versionKey: false

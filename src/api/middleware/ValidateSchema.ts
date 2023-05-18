@@ -24,14 +24,6 @@ export const Schemas = {
             genre: Joi.string().required(),
             stock: Joi.number(),
             imageUrl: Joi.string()
-        }),
-        update: Joi.object<IBook>({
-            title: Joi.string(),
-            author: Joi.string(),
-            description: Joi.string(),
-            genre: Joi.string(),
-            stock: Joi.number(),
-            imageUrl: Joi.string().regex(/^[0-9a-fA-F]$/)
         })
     },
     user: {
