@@ -33,14 +33,16 @@ exports.Schemas = {
             author: joi_1.default.string().required(),
             description: joi_1.default.string().required(),
             genre: joi_1.default.string().required(),
-            stock: joi_1.default.number()
+            stock: joi_1.default.number(),
+            imageUrl: joi_1.default.string().required()
         }),
         update: joi_1.default.object({
             title: joi_1.default.string().required(),
             author: joi_1.default.string().required(),
             description: joi_1.default.string().required(),
             genre: joi_1.default.string().required(),
-            stock: joi_1.default.number()
+            stock: joi_1.default.number(),
+            imageUrl: joi_1.default.string().required()
         })
     },
     user: {
