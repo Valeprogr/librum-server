@@ -1,8 +1,8 @@
 {
   "name": "librum-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "build/index.js",
+  "description": "sever for fullstack project",
+  "main": "build/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.ts",
