@@ -23,7 +23,8 @@ export const Schemas = {
             description: Joi.string().required(),
             genre: Joi.string().required(),
             stock: Joi.number(),
-            imageUrl: Joi.string()
+            imageUrl: Joi.string(),
+            price: Joi.string()
         })
     },
     user: {
