@@ -34,7 +34,8 @@ exports.Schemas = {
             description: joi_1.default.string().required(),
             genre: joi_1.default.string().required(),
             stock: joi_1.default.number(),
-            imageUrl: joi_1.default.string()
+            imageUrl: joi_1.default.string(),
+            price: joi_1.default.string()
         })
     },
     user: {

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const Book_1 = __importDefault(require("../models/Book"));
 const createBook = (req, res, next) => {
-    const { title, author, description, genre, stock, imageUrl } = req.body;
+    const { title, author, description, genre, stock, imageUrl, price } = req.body;
     const book = new Book_1.default({
         _id: new mongoose_1.default.Types.ObjectId(),
         title,
@@ -14,7 +14,8 @@ const createBook = (req, res, next) => {
         description,
         genre,
         stock,
-        imageUrl
+        imageUrl,
+        price
     });
     return book
         .save()
