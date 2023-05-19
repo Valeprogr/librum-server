@@ -7,6 +7,7 @@ export interface IBook {
     genre: string;
     stock: number;
     imageUrl: string;
+    price: string;
 }
 
 export interface IBookModel extends IBook, Document{}
@@ -17,7 +18,8 @@ const BookSchema = new Schema({
     description: {type: String, required:true},
     genre: {type: String, required: true},
     stock: { type: Number, default: 1 },
-    imageUrl: {type: String, default: ''}
+    imageUrl: { type: String, default: '' },
+    price: {type: String, required:true}
 },{
     timestamps: true,
     versionKey: false
