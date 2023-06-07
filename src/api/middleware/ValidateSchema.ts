@@ -24,7 +24,8 @@ export const Schemas = {
             genre: Joi.string().required(),
             stock: Joi.number(),
             imageUrl: Joi.string(),
-            price: Joi.string()
+            price: Joi.string(),
+            email: Joi.string().required(),
         })
     },
     user: {
