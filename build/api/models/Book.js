@@ -31,7 +31,8 @@ const BookSchema = new mongoose_1.Schema({
     genre: { type: String, required: true },
     stock: { type: Number, default: 1 },
     imageUrl: { type: String, default: '' },
-    price: { type: String, required: true }
+    price: { type: String, required: true },
+    email: { type: String, required: true }
 }, {
     timestamps: true,
     versionKey: false
