@@ -3,7 +3,9 @@ import mongoose from "mongoose";
 import Book from '../models/Book';
 
 const createBook = (req: Request, res: Response, next: NextFunction)=>{
-    const {title, author, description, genre,stock, imageUrl,price, email}= req.body;
+    const { description, genre, stock, imageUrl, price, email } = req.body;
+    const title = (req.body.title).toLowerCase();
+    const author = (req.body.author).toLowerCase();
     const book= new Book({
         _id: new mongoose.Types.ObjectId(),
         title,
