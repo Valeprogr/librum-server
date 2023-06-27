@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const User_1 = __importDefault(require("../models/User"));
 const createUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!req.body) {
+    if (!req.body.email) {
         return res.status(500).json({ message: "no req body" });
     }
     console.log(req.body.email);
