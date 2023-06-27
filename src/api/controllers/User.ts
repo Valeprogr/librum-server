@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import User from "../models/User";
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
-    if (!req.body) {
+    if (!req.body.email) {
         return res.status(500).json({ message: "no req body" });
     }
     console.log(req.body.email)
